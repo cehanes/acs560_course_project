@@ -1,0 +1,37 @@
+﻿@model HR_Query.Models.EmployeeProfileModel
+
+@{
+    ViewBag.Title = "Profile";
+}
+
+<h1>Employee Profile.</h1>
+
+<div class="well">
+
+    @using (Html.BeginForm("Delete", "Profile", FormMethod.Post))
+    {
+    @Html.AntiForgeryToken()
+        
+    <h3><strong>Employee Details</strong></h3>
+
+    <h3>Name: @Model.EmployeeFirstName @Model.EmployeeLastName</h3>
+
+    <h3>Department: @Model.DepartmentName</h3>
+
+    <h3>Location: @Model.LocationName</h3>
+
+    <h3>Position Type: @Model.PositionTypeName</h3>
+
+    <br />
+        
+    @Html.HiddenFor(m => m.EmployeeID)
+    <strong>@ViewBag.Message</strong>
+        
+    <button type ="submit" class="btn btn-danger">Delete</button>
+    }
+
+    <br />
+
+@Html.ActionLink("Return", "Options", "Home") to pick a new option.
+    
+</div>

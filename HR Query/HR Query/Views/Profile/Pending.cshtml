@@ -1,0 +1,41 @@
+﻿@model List<HR_Query.Models.PendingTransactionsModel>
+@{
+    ViewBag.Title = "Pending";
+}
+
+<h1>Pending Transactions</h1>
+
+<div class="well">
+
+    <h3>Select from the following pending transactions:</h3>
+
+    <div class="container">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        Transaction Type
+                    </th>
+                   <th>
+                        Associated Employee
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.ActionLink(item.TransactionType, "Review", "Profile", new { request_id = item.RequestID }, null)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EmployeeLastName)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @Html.ActionLink("Return", "Options", "Home") to pick a new option.
+    </div>
+    
+</div>

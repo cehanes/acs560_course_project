@@ -1,0 +1,43 @@
+﻿@model HR_Query.Models.RequestModel
+
+@{
+    ViewBag.Title = "Review";
+}
+
+<h1>Review Transaction.</h1>
+
+<div class="well">
+    @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+    {
+        @Html.AntiForgeryToken()
+    <h3><strong>Transaction Details</strong></h3>
+        
+    <h3>Transaction Initiated By: @Model.RequestorName</h3>
+
+    <h3>Transaction Type: @Model.TransactionType</h3>
+    
+    <h3><strong>Employee Details</strong></h3>
+
+    <h3>Name: @Model.EmployeeFirstName @Model.EmployeeLastName</h3>
+
+    <h3>Department: @Model.DepartmentName</h3>
+
+    <h3>Location: @Model.LocationName</h3>
+
+    <h3>Position Type: @Model.PositionTypeName</h3>
+
+    <br />
+
+    @Html.HiddenFor(m => m.RequestID)
+    @Html.HiddenFor(m => m.EmployeeID)        
+        
+    <button type="submit" class="btn btn-info">Approve</button>
+    @Html.ActionLink("Reject", "Reject", "Profile", new { requestID = @Model.RequestID }, new { @class = "btn btn-danger" })
+        
+    }
+    <br />
+    <br />
+
+    @Html.ActionLink("Return", "Options", "Home") to pick a new option.
+                                                  
+</div>
